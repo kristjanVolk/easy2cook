@@ -1,3 +1,4 @@
+import 'package:easy2cook/screens/auth/authenticate.dart';
 import 'package:easy2cook/screens/wrapper.dart';
 import 'package:easy2cook/services/auth.dart';
 import 'package:flutter/material.dart';
@@ -10,10 +11,6 @@ import 'firebase_options.dart';
 import 'models/NavItem.dart';
 
 import 'package:easy2cook/models/user.dart';
-
-/*void main() {
-  runApp(const MyApp());
-}*/
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -29,7 +26,27 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return StreamProvider<FUser?>.value(
+    return ChangeNotifierProvider(
+      create: (context) => NavItems(),
+      child: StreamProvider<FUser?>.value(
+        value: AuthService().user,
+        initialData: null,
+        child: MaterialApp(
+          title: 'easy2cook',
+          debugShowCheckedModeBanner: false,
+          theme: ThemeData(
+            // backgroundColor: Colors.white,
+            scaffoldBackgroundColor: Colors.white,
+            // Bar na vrhu
+            appBarTheme: AppBarTheme(color: Colors.white, elevation: 0),
+          ),
+          home: Wrapper(),
+        ),
+      ),
+    );
+  }
+
+  /*return StreamProvider<FUser?>.value(
       value: AuthService().user,
       initialData: null,
       child: ChangeNotifierProvider(
@@ -47,5 +64,5 @@ class MyApp extends StatelessWidget {
         ),
       ),
     );
-  }
+  }*/
 }

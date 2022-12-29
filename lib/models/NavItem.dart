@@ -2,6 +2,7 @@ import 'package:easy2cook/screens/home/home_screen.dart';
 import 'package:flutter/material.dart';
 
 import '../screens/profile/profile_screen.dart';
+import '../screens/wrapper.dart';
 
 class NavItem {
   final int id;
@@ -30,17 +31,17 @@ class NavItems extends ChangeNotifier {
     NavItem(
       id: 1,
       icon: "assets/icons/home.svg",
-      destination: HomeScreen(),
+      destination: Wrapper(),
     ),
     NavItem(
       id: 2,
       icon: "assets/icons/zoom.svg",
-      destination: HomeScreen(),
+      destination: Wrapper(),
     ),
     NavItem(
       id: 3,
       icon: "assets/icons/favorite.svg",
-      destination: HomeScreen(),
+      destination: Wrapper(),
     ),
     NavItem(
       id: 4,

@@ -1,3 +1,4 @@
+import 'package:easy2cook/screens/auth/authenticate.dart';
 import 'package:easy2cook/services/auth.dart';
 import 'package:easy2cook/size_config.dart';
 import 'package:flutter/material.dart';

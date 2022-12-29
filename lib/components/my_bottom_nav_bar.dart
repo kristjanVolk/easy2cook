@@ -35,13 +35,14 @@ class MyBottomNavBar extends StatelessWidget {
                 press: () {
                   navItems.changeNavIndex(index: index);
                   // maybe destination checker is not needed samo zdej ce ga ni vrze error
-                  if (navItems.items[index].destinationChecker())
+                  if (navItems.items[index].destinationChecker()) {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
                         builder: (context) => navItems.items[index].destination,
                       ),
                     );
+                  }
                 },
               ),
             ),

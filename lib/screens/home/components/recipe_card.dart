@@ -7,7 +7,6 @@ import 'package:flutter_svg/flutter_svg.dart';
 
 class RecipeCard extends StatelessWidget {
   final RecipeBundle recipeBundle;
-  // final Function press;
   final VoidCallback press;
 
   const RecipeCard(
@@ -19,7 +18,7 @@ class RecipeCard extends StatelessWidget {
       onTap: press,
       child: Container(
           decoration: BoxDecoration(
-            color: recipeBundle.color,
+            color: Colors.green,
             borderRadius: BorderRadius.circular(defaultSize * 1.8),
           ),
           child: Row(
@@ -32,37 +31,26 @@ class RecipeCard extends StatelessWidget {
                     children: <Widget>[
                       Spacer(),
                       Text(
-                        recipeBundle.title,
+                        recipeBundle.name,
                         style: TextStyle(
                           fontSize: defaultSize * 2.2,
                           color: Colors.white,
                         ),
                       ),
-                      SizedBox(
-                        height: defaultSize * 0.5,
-                      ),
-                      Text(
-                        recipeBundle.description,
-                        style: TextStyle(
-                          color: Colors.white54,
-                        ),
-                        maxLines: 2,
-                        overflow: TextOverflow.ellipsis,
-                      ),
                       Spacer(),
                       buildInfoRow(
                         defaultSize,
                         iconSrc: "assets/icons/time-clock.svg",
-                        text: "${recipeBundle.time} minut",
+                        text: "${recipeBundle.pTime} minut",
                       ),
                       SizedBox(
-                        height: defaultSize * 0.5,
+                        height: defaultSize,
                       ),
-                      /*buildInfoRow(
+                      buildInfoRow(
                         defaultSize,
-                        iconSrc: "assets/icons/time-clock.svg",
+                        iconSrc: "assets/icons/star_rate.svg",
                         text: "${recipeBundle.complexity}",
-                      ),*/
+                      ),
                       Spacer(),
                     ],
                   ),
@@ -74,7 +62,10 @@ class RecipeCard extends StatelessWidget {
               AspectRatio(
                   aspectRatio: 0.7,
                   child: Image.asset(
-                    recipeBundle.imageSrc,
+                    /// spremeni sliko
+                    ///
+                    ///
+                    "assets/images/pasta.jpg",
                     fit: BoxFit.cover,
                     alignment: Alignment.centerLeft,
                   )),

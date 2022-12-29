@@ -18,10 +18,9 @@ class ProfileScreen extends StatelessWidget {
 
   AppBar buildAppBar() {
     return AppBar(
-      backgroundColor: primaryColor,
+      backgroundColor: Colors.green,
       leading: SizedBox(),
       centerTitle: true,
-      title: Text("User Profile"),
     );
   }
 }

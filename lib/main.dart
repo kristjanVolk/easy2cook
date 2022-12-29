@@ -40,7 +40,7 @@ class MyApp extends StatelessWidget {
             // Bar na vrhu
             appBarTheme: AppBarTheme(color: Colors.white, elevation: 0),
           ),
-          home: Wrapper(),
+          home: Wrapper(id: 0),
         ),
       ),
     );

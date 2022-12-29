@@ -31,22 +31,22 @@ class NavItems extends ChangeNotifier {
     NavItem(
       id: 1,
       icon: "assets/icons/home.svg",
-      destination: Wrapper(),
+      destination: Wrapper(id: 0),
     ),
     NavItem(
       id: 2,
       icon: "assets/icons/zoom.svg",
-      destination: Wrapper(),
+      destination: Wrapper(id: 1),
     ),
     NavItem(
       id: 3,
       icon: "assets/icons/favorite.svg",
-      destination: Wrapper(),
+      destination: Wrapper(id: 2),
     ),
     NavItem(
       id: 4,
       icon: "assets/icons/profile.svg",
-      destination: ProfileScreen(),
+      destination: Wrapper(id: 3),
     ),
   ];
 }

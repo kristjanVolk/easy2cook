@@ -28,6 +28,7 @@ class _SignInState extends State<SignIn> {
         : Scaffold(
             backgroundColor: Colors.white,
             appBar: AppBar(
+              automaticallyImplyLeading: false,
               backgroundColor: Colors.green[400],
               // odstrani DropShadow
               elevation: 0.0,

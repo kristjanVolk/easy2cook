@@ -21,7 +21,7 @@ class Info extends StatelessWidget {
         children: <Widget>[
           Container(
             height: defaultSize * 10,
-            color: primaryColor,
+            color: Colors.green,
           ),
           Center(
             child: Column(

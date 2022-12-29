@@ -1,6 +1,20 @@
 import 'package:flutter/material.dart';
 
 class RecipeBundle {
+  final int pTime;
+  final String procedure;
+  final String name;
+  final String complexity;
+
+  RecipeBundle({
+    required this.pTime,
+    required this.procedure,
+    required this.name,
+    required this.complexity,
+  });
+}
+
+/*class RecipeBundle {
   final int id, time;
   final String complexity, title, description, imageSrc;
   final Color color;
@@ -15,6 +29,9 @@ class RecipeBundle {
       required this.color});
 }
 
+//final data = DatabaseService().getRecipes();
+
+//List<RecipeBundle> recipeBundles = [];
 List<RecipeBundle> recipeBundles = [
   RecipeBundle(
       id: 1,
@@ -23,29 +40,5 @@ List<RecipeBundle> recipeBundles = [
       title: "Pasta",
       description: "Tvoja mama",
       imageSrc: "assets/images/pasta.jpg",
-      color: Colors.green),
-  RecipeBundle(
-      id: 2,
-      time: 25,
-      complexity: "Zelo zahtevno",
-      title: "Naslov",
-      description: "Podnaslov",
-      imageSrc: "assets/images/pasta.jpg",
-      color: Colors.blue),
-  RecipeBundle(
-      id: 3,
-      time: 25,
-      complexity: "Lahko",
-      title: "Naslov",
-      description: "Lorem ipsum",
-      imageSrc: "assets/images/pasta.jpg",
-      color: Colors.red),
-  RecipeBundle(
-      id: 4,
-      time: 25,
-      complexity: "Srednje",
-      title: "Naslov",
-      description: "Lorem ipsum",
-      imageSrc: "assets/images/pasta.jpg",
-      color: Colors.orange),
-];
+      color: Colors.green.shade600),
+];*/

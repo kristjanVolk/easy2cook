@@ -21,11 +21,11 @@ class Body extends StatelessWidget {
           SizedBox(
             height: SizeConfig.defaultSize * 2,
           ),
-          ProfileMenuItem(
+          /*ProfileMenuItem(
             iconSrc: "assets/icons/favorite.svg",
             title: "Favorites",
             press: () {},
-          ),
+          ),*/
           ProfileMenuItem(
             iconSrc: "assets/icons/question_answer.svg",
             title: "Propose Ingredients",

@@ -31,10 +31,11 @@ class _RegisterState extends State<Register> {
         : Scaffold(
             backgroundColor: Colors.white,
             appBar: AppBar(
+              automaticallyImplyLeading: false,
               backgroundColor: Colors.green[400],
               // odstrani DropShadow
               elevation: 0.0,
-              title: Text("Sign up to easy2cook :)"),
+              title: Text("Sign up"),
               actions: <Widget>[
                 ElevatedButton.icon(
                   icon: Icon(Icons.person),

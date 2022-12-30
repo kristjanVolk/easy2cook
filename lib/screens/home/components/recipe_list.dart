@@ -1,5 +1,6 @@
 import 'package:easy2cook/constants.dart';
 import 'package:easy2cook/models/RecipeBundle.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:easy2cook/size_config.dart';
 import 'package:easy2cook/screens/home/components/categories.dart';
@@ -19,80 +20,38 @@ class _RecipeListState extends State<RecipeList> {
   @override
   Widget build(BuildContext context) {
     final recipes = Provider.of<List<RecipeBundle>>(context);
-    /*recipes.forEach((recipe) {
-      print(recipe.name);
-      print(recipe.procedure);
-    });*/
 
-    return SafeArea(
-      child: Column(
-        children: <Widget>[
-          Categories(),
-          // Search
-          //RecipeCard(),
-          Expanded(
-            child: Padding(
-              padding:
-                  EdgeInsets.symmetric(horizontal: SizeConfig.defaultSize * 2),
-              child: GridView.builder(
-                itemCount: recipes.length,
-                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 1,
-                  mainAxisSpacing: 20,
-                  // crossAxisSpacing: SizeConfig.defaultSize,
-                  childAspectRatio: 1.65,
+    return recipes == null
+        ? Container()
+        : SafeArea(
+            child: Column(
+              children: <Widget>[
+                Categories(),
+                // Search
+                //RecipeCard(),
+                Expanded(
+                  child: Padding(
+                    padding: EdgeInsets.symmetric(
+                        horizontal: SizeConfig.defaultSize * 2),
+                    child: GridView.builder(
+                      itemCount: recipes.length,
+                      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                        crossAxisCount: 1,
+                        mainAxisSpacing: 20,
+                        crossAxisSpacing: SizeConfig.defaultSize,
+                        childAspectRatio: 1.65,
+                      ),
+                      itemBuilder: (context, index) => RecipeCard(
+                        recipeBundle: recipes[index],
+                        press: () {
+                          print("RECEPTI" + index.toString());
+                        },
+                      ),
+                    ),
+                  ),
                 ),
-                itemBuilder: (context, index) => RecipeCard(
-                  recipeBundle: recipes[index],
-                  press: () {
-                    print("RECEPTI" + index.toString());
-                  },
-                ),
-              ),
+              ],
             ),
-          ),
-        ],
-      ),
-    );
+          );
   }
 }
-
-
-
-
-/*class Body extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return SafeArea(
-      child: Column(
-        children: <Widget>[
-          Categories(),
-          // Search
-          //RecipeCard(),
-          Expanded(
-            child: Padding(
-              padding:
-                  EdgeInsets.symmetric(horizontal: SizeConfig.defaultSize * 2),
-              child: GridView.builder(
-                itemCount: recipeBundles.length,
-                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 1,
-                  mainAxisSpacing: 20,
-                  // crossAxisSpacing: SizeConfig.defaultSize,
-                  childAspectRatio: 1.65,
-                ),
-                itemBuilder: (context, index) => RecipeCard(
-                  recipeBundle: recipeBundles[index],
-                  press: () {
-                    print("RECEPTI" + index.toString());
-                  },
-                ),
-              ),
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-}
-*/

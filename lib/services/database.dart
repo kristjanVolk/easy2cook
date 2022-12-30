@@ -1,4 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_storage/firebase_storage.dart';
+import 'package:flutter/cupertino.dart';
 
 import '../models/RecipeBundle.dart';
 
@@ -31,6 +33,7 @@ class DatabaseService {
         pTime: doc.get('pTime') ?? 0,
         procedure: doc.get('procedure') ?? '',
         complexity: doc.get('complexity') ?? '',
+        img: doc.get('img') ?? '',
       );
     }).toList();
   }
@@ -39,4 +42,16 @@ class DatabaseService {
   Stream<List<RecipeBundle>>? get recipes {
     return recipesCollection.snapshots().map(_recipeListFromSnapshot);
   }
+
+  // get image from fb storage
+  final FirebaseStorage fStorage = FirebaseStorage.instance;
+
+  Future<String> getImage(String img) async {
+    final ref = fStorage.ref().child(img);
+    var url = await ref.getDownloadURL();
+    return url;
+  }
+
+  // recipes and ingredients
+
 }

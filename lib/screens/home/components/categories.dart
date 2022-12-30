@@ -13,8 +13,7 @@ class _CategoriesState extends State<Categories> {
     "Vegan",
     "Vegeterian",
     "Lactose Free",
-    "Gluten Free",
-    "Another One"
+    "Gluten Free"
   ];
 
   int selectedIndex = 0;
@@ -38,6 +37,8 @@ class _CategoriesState extends State<Categories> {
         setState(() {
           selectedIndex = index;
         });
+
+        // Print selected category
       },
       child: Container(
         alignment: Alignment.center,

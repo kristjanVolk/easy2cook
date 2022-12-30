@@ -19,8 +19,6 @@ class HomeScreen extends StatelessWidget {
     SizeConfig().init(context);
     return StreamProvider<List<RecipeBundle>?>.value(
       value: DatabaseService().recipes,
-      // initial data
-
       initialData: null,
       child: Scaffold(
         appBar: buildAppBar(),

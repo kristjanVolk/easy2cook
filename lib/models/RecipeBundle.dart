@@ -5,12 +5,14 @@ class RecipeBundle {
   final String procedure;
   final String name;
   final String complexity;
+  String img;
 
   RecipeBundle({
     required this.pTime,
     required this.procedure,
     required this.name,
     required this.complexity,
+    required this.img,
   });
 }
 

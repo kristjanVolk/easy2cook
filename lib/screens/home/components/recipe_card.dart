@@ -1,5 +1,7 @@
 import 'package:easy2cook/constants.dart';
 import 'package:easy2cook/models/RecipeBundle.dart';
+import 'package:easy2cook/services/database.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:easy2cook/size_config.dart';
 import 'package:easy2cook/screens/home/components/categories.dart';
@@ -9,11 +11,15 @@ class RecipeCard extends StatelessWidget {
   final RecipeBundle recipeBundle;
   final VoidCallback press;
 
-  const RecipeCard(
-      {super.key, required this.recipeBundle, required this.press});
+  const RecipeCard({
+    super.key,
+    required this.recipeBundle,
+    required this.press,
+  });
   @override
   Widget build(BuildContext context) {
     double defaultSize = SizeConfig.defaultSize;
+
     return GestureDetector(
       onTap: press,
       child: Container(
@@ -41,7 +47,7 @@ class RecipeCard extends StatelessWidget {
                       buildInfoRow(
                         defaultSize,
                         iconSrc: "assets/icons/time-clock.svg",
-                        text: "${recipeBundle.pTime} minut",
+                        text: "${recipeBundle.pTime} minutes",
                       ),
                       SizedBox(
                         height: defaultSize,
@@ -60,15 +66,15 @@ class RecipeCard extends StatelessWidget {
                 width: defaultSize * 0.5,
               ),
               AspectRatio(
-                  aspectRatio: 0.7,
-                  child: Image.asset(
-                    /// spremeni sliko
-                    ///
-                    ///
-                    "assets/images/pasta.jpg",
-                    fit: BoxFit.cover,
-                    alignment: Alignment.centerLeft,
-                  )),
+                aspectRatio: 0.7,
+                child: Image.network(
+                  /// spremeni sliko
+                  //"assets/images/beef.jpg",
+                  recipeBundle.img,
+                  fit: BoxFit.cover,
+                  alignment: Alignment.center,
+                ),
+              ),
             ],
           )),
     );

@@ -9,6 +9,7 @@ import 'profile_menu_item_dart.dart';
 
 class Body extends StatelessWidget {
   @override
+  final AuthService _auth = AuthService();
   Widget build(BuildContext context) {
     return SingleChildScrollView(
       child: Column(
@@ -41,6 +42,12 @@ class Body extends StatelessWidget {
             title: "Help",
             press: () {},
           ),
+          ProfileMenuItem(
+              iconSrc: "assets/icons/logout.svg",
+              title: "Logout",
+              press: () async {
+                await _auth.signOut();
+              })
         ],
       ),
     );

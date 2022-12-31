@@ -11,6 +11,8 @@ import 'package:easy2cook/screens/home/components/recipe_card.dart';
 import 'package:provider/provider.dart';
 import 'package:easy2cook/services/database.dart';
 
+import '../../wrapper.dart';
+
 class RecipeList extends StatefulWidget {
   const RecipeList({super.key});
 
@@ -21,7 +23,12 @@ class RecipeList extends StatefulWidget {
 class _RecipeListState extends State<RecipeList> {
   @override
   Widget build(BuildContext context) {
-    final recipes = Provider.of<List<RecipeBundle>>(context);
+    List<RecipeBundle> recipes = Provider.of<List<RecipeBundle>>(context);
+    final cat = Provider.of<MyChangeNotifier>(context);
+
+    if (recipes != null) {
+      recipes = getRecipeDiet(recipes, cat.index);
+    }
 
     return recipes == null
         ? Container()
@@ -29,36 +36,57 @@ class _RecipeListState extends State<RecipeList> {
             child: Column(
               children: <Widget>[
                 Categories(),
-                // Search
-                //RecipeCard(),
                 Expanded(
                   child: Padding(
                     padding: EdgeInsets.symmetric(
                         horizontal: SizeConfig.defaultSize * 2),
-                    child: GridView.builder(
-                      itemCount: recipes.length,
-                      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                        crossAxisCount: 1,
-                        mainAxisSpacing: 20,
-                        crossAxisSpacing: SizeConfig.defaultSize,
-                        childAspectRatio: 1.65,
-                      ),
-                      itemBuilder: (context, index) => RecipeCard(
-                        recipeBundle: recipes[index],
-                        press: () {
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) =>
-                                      RecipeDetail(recipes[index])));
-                        },
-                      ),
-                    ),
+                    child: recipes.length > 0
+                        ? GridView.builder(
+                            itemCount: recipes.length,
+                            gridDelegate:
+                                SliverGridDelegateWithFixedCrossAxisCount(
+                              crossAxisCount: 1,
+                              mainAxisSpacing: 20,
+                              crossAxisSpacing: SizeConfig.defaultSize,
+                              childAspectRatio: 1.65,
+                            ),
+                            itemBuilder: (context, index) => RecipeCard(
+                              recipeBundle: recipes[index],
+                              press: () {
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) =>
+                                            RecipeDetail(recipes[index])));
+                              },
+                            ),
+                          )
+                        : null,
                   ),
                 ),
               ],
             ),
           );
+  }
+
+  List<RecipeBundle> getRecipeDiet(List<RecipeBundle> recipes, int cat) {
+    List<RecipeBundle> rb = [];
+    List<String> categories = [
+      "All",
+      "Vegan",
+      "Vegeterian",
+      "Lactose Free",
+      "Gluten Free"
+    ];
+    String category = categories[cat];
+    if (category == "All") return recipes;
+
+    for (int i = 0; i < recipes.length; i++) {
+      if (recipes[i].category.contains(category)) {
+        rb.add(recipes[i]);
+      }
+    }
+    return rb;
   }
 }
 

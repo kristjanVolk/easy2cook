@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:easy2cook/models/RecipeBundle.dart';
 import 'package:easy2cook/screens/auth/authenticate.dart';
+import 'package:easy2cook/screens/wrapper.dart';
 import 'package:easy2cook/services/auth.dart';
 import 'package:easy2cook/services/database.dart';
 import 'package:easy2cook/size_config.dart';
@@ -17,6 +18,7 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
+
     return StreamProvider<List<RecipeBundle>?>.value(
       value: DatabaseService().recipes,
       initialData: null,

@@ -21,10 +21,22 @@ class Wrapper extends StatelessWidget {
     }
     // user logged in
     else {
-      if (id == 0)
-        return HomeScreen();
-      else
+      if (id == 0) {
+        return ChangeNotifierProvider(
+          create: ((_) => MyChangeNotifier()),
+          child: HomeScreen(),
+        );
+      } else
         return ProfileScreen();
     }
+  }
+}
+
+class MyChangeNotifier extends ChangeNotifier {
+  int index = 0;
+
+  void setCategory(int i) {
+    index = i;
+    notifyListeners();
   }
 }

@@ -34,6 +34,7 @@ class DatabaseService {
         procedure: doc.get('procedure') ?? '',
         complexity: doc.get('complexity') ?? '',
         img: doc.get('img') ?? '',
+        ingredients: doc.get('ingredients') ?? '',
       );
     }).toList();
   }

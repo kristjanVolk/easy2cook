@@ -1,13 +1,14 @@
+import 'package:easy2cook/models/RecipeBundle.dart';
 import 'package:flutter/material.dart';
 import 'package:easy2cook/size_config.dart';
 import 'package:easy2cook/constants.dart';
 
 class Categories extends StatefulWidget {
   @override
-  _CategoriesState createState() => _CategoriesState();
+  CategoriesState createState() => CategoriesState();
 }
 
-class _CategoriesState extends State<Categories> {
+class CategoriesState extends State<Categories> {
   List<String> categories = [
     "All",
     "Vegan",
@@ -37,8 +38,6 @@ class _CategoriesState extends State<Categories> {
         setState(() {
           selectedIndex = index;
         });
-
-        // Print selected category
       },
       child: Container(
         alignment: Alignment.center,

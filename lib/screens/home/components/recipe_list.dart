@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:easy2cook/constants.dart';
 import 'package:easy2cook/models/RecipeBundle.dart';
 import 'package:firebase_storage/firebase_storage.dart';
@@ -44,7 +46,11 @@ class _RecipeListState extends State<RecipeList> {
                       itemBuilder: (context, index) => RecipeCard(
                         recipeBundle: recipes[index],
                         press: () {
-                          print("RECEPTI" + index.toString());
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) =>
+                                      RecipeDetail(recipes[index])));
                         },
                       ),
                     ),
@@ -54,4 +60,115 @@ class _RecipeListState extends State<RecipeList> {
             ),
           );
   }
+}
+
+// recipe details
+class RecipeDetail extends StatelessWidget {
+  final RecipeBundle recipe;
+  RecipeDetail(this.recipe);
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+        appBar: buildAppBar(context),
+        body: SingleChildScrollView(
+          child: Column(
+            children: <Widget>[
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Padding(
+                    padding: EdgeInsets.only(top: 10),
+                    child: Image.network(
+                      recipe.img,
+                      width: 350,
+                    ),
+                  )
+                ],
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Padding(
+                    padding: EdgeInsets.only(top: 20, left: 20),
+                    child: Text(
+                      recipe.name,
+                      style: TextStyle(
+                        fontSize: 26,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+              Row(
+                children: [
+                  Padding(
+                    padding: EdgeInsets.only(top: 20, left: 20),
+                    child: Text(
+                      'Ingredients:',
+                      style:
+                          TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                    ),
+                  )
+                ],
+              ),
+              Row(
+                children: [
+                  Padding(
+                    padding: EdgeInsets.only(top: 10, left: 20),
+                    child: Text(
+                      "\u2022 " + recipe.ingredients.join(', '),
+                      style:
+                          TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                    ),
+                  )
+                ],
+              ),
+              Row(
+                children: [
+                  Padding(
+                    padding: EdgeInsets.only(top: 20, left: 20),
+                    child: Text(
+                      'Procedure:',
+                      style:
+                          TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                    ),
+                  )
+                ],
+              ),
+              Row(
+                children: [
+                  Container(
+                    width: 350,
+                    child: Padding(
+                      padding: EdgeInsets.only(top: 10, left: 20, bottom: 30),
+                      child: Text(
+                        recipe.procedure,
+                        style: TextStyle(fontSize: 16),
+                      ),
+                    ),
+                  )
+                ],
+              )
+            ],
+          ),
+        ));
+  }
+}
+
+AppBar buildAppBar(BuildContext context) {
+  return AppBar(
+    leading: IconButton(
+      icon: SvgPicture.asset(
+        "assets/icons/arrow_back_ios.svg",
+        width: 24,
+      ),
+      onPressed: () {
+        Navigator.pop(context);
+      },
+    ),
+    centerTitle: true,
+    title: Image.asset("assets/images/logo.png", width: 170),
+  );
 }

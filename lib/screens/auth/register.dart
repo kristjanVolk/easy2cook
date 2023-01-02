@@ -20,6 +20,7 @@ class _RegisterState extends State<Register> {
 
   bool loading = false;
 
+  String name = "";
   String email = "";
   String password = "";
   String error = "";
@@ -57,6 +58,17 @@ class _RegisterState extends State<Register> {
                     TextFormField(
                       // constants -> decoration
                       decoration:
+                          textInputDecoration.copyWith(hintText: "Full Name"),
+                      validator: (val) =>
+                          val!.isEmpty ? 'Enter your full name' : null,
+                      onChanged: (val) {
+                        setState(() => name = val);
+                      },
+                    ),
+                    SizedBox(height: 20),
+                    TextFormField(
+                      // constants -> decoration
+                      decoration:
                           textInputDecoration.copyWith(hintText: "E-mail"),
                       validator: (val) =>
                           val!.isEmpty ? 'Enter an email' : null,
@@ -82,8 +94,9 @@ class _RegisterState extends State<Register> {
                         // if valid we can send to firebase
                         if (_formKey.currentState!.validate()) {
                           setState(() => loading = true);
-                          dynamic result = await _auth
-                              .registerWithEmailAndPassword(email, password);
+                          dynamic result =
+                              await _auth.registerWithEmailAndPassword(
+                                  name, email, password);
 
                           // firebase avtomatsko pregleda če je mail veljaven
                           // če ni dobimo response null

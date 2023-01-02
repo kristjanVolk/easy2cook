@@ -20,6 +20,14 @@ class DatabaseService {
     });
   }
 
+  // user name
+  final CollectionReference userNamesCollection =
+      FirebaseFirestore.instance.collection('usernames');
+
+  Future addUserName(String name) async {
+    return await userNamesCollection.doc(uid).set({'username': name});
+  }
+
   // recipes
 
   final CollectionReference recipesCollection =

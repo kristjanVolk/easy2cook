@@ -57,7 +57,7 @@ class _RecipeListState extends State<RecipeList> {
                                     context,
                                     MaterialPageRoute(
                                         builder: (context) =>
-                                            RecipeDetail(recipes[index])));
+                                            RecipeDetail(recipe: recipes[index])));
                               },
                             ),
                           )
@@ -93,7 +93,7 @@ class _RecipeListState extends State<RecipeList> {
 // recipe details
 class RecipeDetail extends StatelessWidget {
   final RecipeBundle recipe;
-  RecipeDetail(this.recipe);
+  RecipeDetail({required this.recipe});
 
   @override
   Widget build(BuildContext context) {

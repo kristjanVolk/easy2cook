@@ -1,6 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_storage/firebase_storage.dart';
-import 'package:flutter/cupertino.dart';
 
 import '../models/RecipeBundle.dart';
 
@@ -37,13 +36,15 @@ class DatabaseService {
   List<RecipeBundle> _recipeListFromSnapshot(QuerySnapshot snapshot) {
     return snapshot.docs.map((doc) {
       return RecipeBundle(
+          id: doc.get('id') ?? 0,
           name: doc.get('name') ?? '',
           pTime: doc.get('pTime') ?? 0,
           procedure: doc.get('procedure') ?? '',
           complexity: doc.get('complexity') ?? '',
           img: doc.get('img') ?? '',
           ingredients: doc.get('ingredients') ?? '',
-          category: doc.get('category') ?? '');
+          category: doc.get('category') ?? '',
+          isFavorite: doc.get('isFavorite') ?? false);
     }).toList();
   }
 

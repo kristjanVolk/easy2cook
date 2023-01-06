@@ -6,20 +6,12 @@
     "configurations": [
         {
             "name": "easy2cook",
-            "request": "launch",
-            "type": "dart"
-        },
-        {
-            "name": "easy2cook (profile mode)",
+            "program": "lib/main.dart",
             "request": "launch",
             "type": "dart",
-            "flutterMode": "profile"
-        },
-        {
-            "name": "easy2cook (release mode)",
-            "request": "launch",
-            "type": "dart",
-            "flutterMode": "release"
+            "args": [
+                "--no-sound-null-safety"
+            ]
         }
     ]
 }

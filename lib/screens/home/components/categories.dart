@@ -1,4 +1,3 @@
-import 'package:easy2cook/models/RecipeBundle.dart';
 import 'package:easy2cook/screens/wrapper.dart';
 import 'package:flutter/material.dart';
 import 'package:easy2cook/size_config.dart';

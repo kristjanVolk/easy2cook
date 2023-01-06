@@ -3,6 +3,7 @@ import 'package:easy2cook/screens/home/home_screen.dart';
 import 'package:easy2cook/screens/profile/profile_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import './profile/components/favorite_screen.dart';
 
 import 'package:easy2cook/models/user.dart';
 
@@ -26,8 +27,18 @@ class Wrapper extends StatelessWidget {
           create: ((_) => MyChangeNotifier()),
           child: HomeScreen(),
         );
-      } else
+      }
+      else if (id == 2){
+        return ChangeNotifierProvider(
+          create: ((_) => MyChangeNotifier()),
+          child: FavoriteScreen(),
+        );
+        
+      }
+      else{
         return ProfileScreen();
+      }
+      
     }
   }
 }

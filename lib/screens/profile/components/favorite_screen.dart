@@ -30,7 +30,7 @@ class _FavoriteScreenState extends State<FavoriteScreen> {
     print(rec.name);
     Navigator.push(
       context,
-      MaterialPageRoute(builder: (context) => RecipeDetail(recipe: rec))
+      MaterialPageRoute(builder: (context) => RecipeDetail(rec))
     );
   }
 

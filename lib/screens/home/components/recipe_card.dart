@@ -108,16 +108,19 @@ class _RecipeCardState extends State<RecipeCard> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
                       //tukaj on tap na ikono srček kličemo metodo zapisiPodatke
-                      IconButton(
-                          onPressed: () {
-                            setState(() {
-                              isFavorite = !isFavorite;
-                            });
-                            zapisiPodatke();
-                          },
-                          icon: isFavorite ? Icon(Icons.favorite) : Icon(Icons.favorite_border),
-                          color: isFavorite ? Colors.red : null,
-                          ),
+                      Padding(
+                        padding: EdgeInsets.only(left: defaultSize * 5.5),
+                        child: IconButton(
+                            onPressed: () {
+                              setState(() {
+                                isFavorite = !isFavorite;
+                              });
+                              zapisiPodatke();
+                            },
+                            icon: isFavorite ? Icon(Icons.favorite) : Icon(Icons.favorite_border),
+                            color: isFavorite ? Colors.red : null,
+                            ),
+                      ),
                       Spacer(),
                       Text(
                         widget.recipeBundle.name,

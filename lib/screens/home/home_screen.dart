@@ -13,6 +13,7 @@ import 'package:provider/provider.dart';
 import '../../components/my_bottom_nav_bar.dart';
 
 class HomeScreen extends StatelessWidget {
+  static const routeName = '/home-screen';
   final AuthService _auth = AuthService();
 
   @override

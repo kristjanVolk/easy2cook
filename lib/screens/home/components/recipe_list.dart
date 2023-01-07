@@ -14,6 +14,7 @@ import 'package:easy2cook/services/database.dart';
 import '../../wrapper.dart';
 
 class RecipeList extends StatefulWidget {
+  static const routeName = '/recipe-list';
   const RecipeList({super.key});
 
   @override

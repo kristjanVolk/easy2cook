@@ -1,11 +1,12 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:easy2cook/screens/home/components/recipe_list.dart';
+import 'package:easy2cook/screens/home/home_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import '../../../constants.dart';
 import '../../../models/RecipeBundle.dart';
 import '../../../size_config.dart';
-
+import  '../../wrapper.dart';
 
 class FavoriteScreen extends StatefulWidget {
   const FavoriteScreen({super.key});
@@ -90,9 +91,6 @@ class _FavoriteScreenState extends State<FavoriteScreen> {
               margin: EdgeInsets.all(defaultSize * 1.5),
               elevation: 8.0,
               shape: RoundedRectangleBorder(
-                side: BorderSide(
-                  color: Colors.red,
-                ),
                 borderRadius: BorderRadius.circular(defaultSize * 1.8),
               ),
               child: Container(

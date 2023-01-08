@@ -92,7 +92,6 @@ class _RecipeListState extends State<RecipeList> {
 }
 
 // recipe details
-// recipe details
 class RecipeDetail extends StatelessWidget {
   final RecipeBundle recipe;
   RecipeDetail(this.recipe);

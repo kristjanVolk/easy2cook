@@ -122,89 +122,135 @@ class RecipeDetail extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    List<dynamic> recIngred = recipe.ingredients;
+    recIngred.sort();
+
+    for (int i = 0; i < recIngred.length; i++) {
+      recIngred[i] = "\u2022 " + recIngred[i];
+    }
+
     return Scaffold(
         appBar: buildAppBar(context),
         body: SingleChildScrollView(
-          child: Column(
-            children: <Widget>[
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Padding(
-                    padding: EdgeInsets.only(top: 10),
-                    child: Image.network(
+          child: Padding(
+            padding: EdgeInsets.symmetric(
+              vertical: SizeConfig.defaultSize * 2,
+            ),
+            child: Column(
+              children: <Widget>[
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Image.network(
                       recipe.img,
                       width: 350,
-                    ),
-                  )
-                ],
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Padding(
-                    padding: EdgeInsets.only(top: 20, left: 20),
-                    child: Text(
-                      recipe.name,
-                      style: TextStyle(
-                        fontSize: 26,
-                        fontWeight: FontWeight.bold,
+                    )
+                  ],
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Flexible(
+                      child: Padding(
+                        padding: EdgeInsets.symmetric(
+                          horizontal: SizeConfig.defaultSize * 2,
+                        ),
+                        child: Text(
+                          recipe.name,
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                            fontSize: 26,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
                       ),
                     ),
-                  ),
-                ],
-              ),
-              Row(
-                children: [
-                  Padding(
-                    padding: EdgeInsets.only(top: 20, left: 20),
-                    child: Text(
-                      'Ingredients:',
-                      style:
-                          TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-                    ),
-                  )
-                ],
-              ),
-              Row(
-                children: [
-                  Padding(
-                    padding: EdgeInsets.only(top: 10, left: 20),
-                    child: Text(
-                      "\u2022 " + recipe.ingredients.join(', '),
-                      style:
-                          TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
-                    ),
-                  )
-                ],
-              ),
-              Row(
-                children: [
-                  Padding(
-                    padding: EdgeInsets.only(top: 20, left: 20),
-                    child: Text(
-                      'Procedure:',
-                      style:
-                          TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-                    ),
-                  )
-                ],
-              ),
-              Row(
-                children: [
-                  Container(
-                    width: 350,
-                    child: Padding(
-                      padding: EdgeInsets.only(top: 10, left: 20, bottom: 30),
+                  ],
+                ),
+                Row(
+                  children: [
+                    Padding(
+                      padding: EdgeInsets.symmetric(
+                        horizontal: SizeConfig.defaultSize * 2,
+                        vertical: SizeConfig.defaultSize * 2,
+                      ),
                       child: Text(
-                        recipe.procedure,
-                        style: TextStyle(fontSize: 16),
+                        'Ingredients:',
+                        style: TextStyle(
+                            fontSize: 24, fontWeight: FontWeight.bold),
+                      ),
+                    )
+                  ],
+                ),
+                Row(
+                  children: [
+                    Padding(
+                      padding: EdgeInsets.symmetric(
+                        horizontal: SizeConfig.defaultSize * 3,
+                      ),
+                      child: Text(
+                        recipe.ingredients.join('\n'),
+                        style: TextStyle(fontSize: 20),
+                      ),
+                    )
+                  ],
+                ),
+                Row(
+                  children: [
+                    Padding(
+                      padding: EdgeInsets.symmetric(
+                        horizontal: SizeConfig.defaultSize * 2,
+                        vertical: SizeConfig.defaultSize * 2,
+                      ),
+                      child: Text(
+                        'Procedure:',
+                        style: TextStyle(
+                            fontSize: 20, fontWeight: FontWeight.bold),
+                      ),
+                    )
+                  ],
+                ),
+                Row(
+                  children: [
+                    Flexible(
+                      child: Padding(
+                        padding: EdgeInsets.symmetric(
+                          horizontal: SizeConfig.defaultSize * 3,
+                        ),
+                        child: Text(
+                          recipe.procedure,
+                          style: TextStyle(fontSize: 18),
+                          textAlign: TextAlign.justify,
+                        ),
+                      ),
+                    )
+                  ],
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Padding(
+                      padding: EdgeInsets.only(top: SizeConfig.defaultSize * 2),
+                      child: Flexible(
+                        child: Padding(
+                          padding: EdgeInsets.symmetric(
+                            horizontal: SizeConfig.defaultSize * 2,
+                          ),
+                          child: Text(
+                            'ENJOY!',
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                              fontSize: 20,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        ),
                       ),
                     ),
-                  )
-                ],
-              )
-            ],
+                  ],
+                ),
+              ],
+            ),
           ),
         ));
   }

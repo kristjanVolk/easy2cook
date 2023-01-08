@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 
+import '../models/IngredientsBundle.dart';
 import '../models/RecipeBundle.dart';
 
 // ta class vsebuje vse metode, ki so rabljene za Firebase podatkovno bazo
@@ -63,5 +64,18 @@ class DatabaseService {
   }
 
   // recipes and ingredients
+  final CollectionReference ingredientsCollection =
+      FirebaseFirestore.instance.collection('ingredients');
 
+  // recipe list from snapshot
+  List<IngredientsBundle> _ingredientsListFromSnapshot(QuerySnapshot snapshot) {
+    return snapshot.docs.map((doc) {
+      return IngredientsBundle(name: doc.get('name') ?? '');
+    }).toList();
+  }
+
+  // get recipe updates
+  Stream<List<IngredientsBundle>>? get ingredients {
+    return ingredientsCollection.snapshots().map(_ingredientsListFromSnapshot);
+  }
 }

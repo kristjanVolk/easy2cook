@@ -1,6 +1,7 @@
 import 'package:easy2cook/screens/auth/authenticate.dart';
 import 'package:easy2cook/screens/home/home_screen.dart';
 import 'package:easy2cook/screens/profile/profile_screen.dart';
+import 'package:easy2cook/screens/search/search_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import './profile/components/favorite_screen.dart';
@@ -27,6 +28,12 @@ class Wrapper extends StatelessWidget {
           create: ((_) => MyChangeNotifier()),
           child: HomeScreen(),
         );
+      }
+      if(id == 1){
+        return ChangeNotifierProvider(
+          create:((_) => MyChangeNotifier()),
+          child: SearchScreen(),
+          );
       }
       else if (id == 2){
         return ChangeNotifierProvider(

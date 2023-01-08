@@ -11,7 +11,7 @@ class RecipeCard extends StatefulWidget {
   RecipeCard({
     required this.recipeBundle,
     required this.press,
-  }):super(key: ValueKey(recipeBundle.id));
+  }) : super(key: ValueKey(recipeBundle.id));
 
   @override
   State<RecipeCard> createState() => _RecipeCardState();
@@ -34,20 +34,19 @@ class _RecipeCardState extends State<RecipeCard> {
   void initState() {
     super.initState();
 
-   _firestore
-    .collection('favorites')
-    .doc(_auth.currentUser?.uid)
-    .collection('recipes')
-    .where('id', isEqualTo: widget.recipeBundle.id)
-    .get()
-    .then((querySnapshot) {
+    _firestore
+        .collection('favorites')
+        .doc(_auth.currentUser?.uid)
+        .collection('recipes')
+        .where('id', isEqualTo: widget.recipeBundle.id)
+        .get()
+        .then((querySnapshot) {
       print('Recipe ID: ${widget.recipeBundle.id}');
       print(querySnapshot.toString());
       querySnapshot.docs.forEach((doc) {
         setState(() {
-          isFavorite = doc.data()['isFavorite'];  
+          isFavorite = doc.data()['isFavorite'];
         });
-        
       });
     });
   }
@@ -76,9 +75,9 @@ class _RecipeCardState extends State<RecipeCard> {
           'id': widget.recipeBundle.id,
           'pTime': widget.recipeBundle.pTime,
           'name': widget.recipeBundle.name,
-          'img' : widget.recipeBundle.img,
+          'img': widget.recipeBundle.img,
           'complexity': widget.recipeBundle.complexity,
-          'procedure' : widget.recipeBundle.procedure,
+          'procedure': widget.recipeBundle.procedure,
           'ingredients': widget.recipeBundle.ingredients,
           'category': widget.recipeBundle.category,
           'isFavorite': widget.recipeBundle.isFavorite,
@@ -105,22 +104,8 @@ class _RecipeCardState extends State<RecipeCard> {
                 child: Padding(
                   padding: EdgeInsets.all(defaultSize * 2),
                   child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.end,
                     children: <Widget>[
-                      //tukaj on tap na ikono srček kličemo metodo zapisiPodatke
-                      Padding(
-                        padding: EdgeInsets.only(left: defaultSize * 5.5),
-                        child: IconButton(
-                            onPressed: () {
-                              setState(() {
-                                isFavorite = !isFavorite;
-                              });
-                              zapisiPodatke();
-                            },
-                            icon: isFavorite ? Icon(Icons.favorite) : Icon(Icons.favorite_border),
-                            color: isFavorite ? Colors.red : null,
-                            ),
-                      ),
                       Spacer(),
                       Text(
                         widget.recipeBundle.name,
@@ -147,6 +132,22 @@ class _RecipeCardState extends State<RecipeCard> {
                     ],
                   ),
                 ),
+              ),
+              Column(
+                children: [
+                  IconButton(
+                    onPressed: () {
+                      setState(() {
+                        isFavorite = !isFavorite;
+                      });
+                      zapisiPodatke();
+                    },
+                    icon: isFavorite
+                        ? Icon(Icons.favorite)
+                        : Icon(Icons.favorite_border),
+                    color: isFavorite ? Colors.red : null,
+                  ),
+                ],
               ),
               SizedBox(
                 width: defaultSize * 0.5,

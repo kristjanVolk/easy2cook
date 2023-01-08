@@ -26,6 +26,7 @@ class _FavoriteScreenState extends State<FavoriteScreen> {
   }
 
   void _navigateToRecipeCard(dynamic recipe){
+    //prikaz detailov recepta
     RecipeBundle rec = RecipeBundle(id: recipe["id"], pTime: recipe["pTime"], procedure: recipe["procedure"], name: recipe["name"], complexity: recipe["complexity"], img: recipe["img"], ingredients: recipe["ingredients"], category: recipe["category"]);
     print(rec.name);
     Navigator.push(
@@ -35,6 +36,7 @@ class _FavoriteScreenState extends State<FavoriteScreen> {
   }
 
   Future<void> _getFavoriteRecipes() async {
+    // pobiranje favoritov iz baze
     final CollectionReference recipesFav = _firestore
         .collection('favorites')
         .doc(_auth.currentUser?.uid)
@@ -43,9 +45,7 @@ class _FavoriteScreenState extends State<FavoriteScreen> {
       if (snapshot.docs.isNotEmpty) {
         snapshot.docs.forEach((document) {
           setState(() {
-            print(document.data());
             _favoriteRecipes.add(document.data());
-            print(_favoriteRecipes.length);
           });
         });
       }
@@ -53,6 +53,7 @@ class _FavoriteScreenState extends State<FavoriteScreen> {
   }
 
   Future<void> _posodobiPodatke(int indeks) async {
+    //brisanje podatkov iz favoritov glede na klik srcka
     final _favoritesCollection = _firestore.collection('favorites');
     int id = _favoriteRecipes[indeks]['id'];
     _favoriteRecipes[indeks]['isFavorite'] =
